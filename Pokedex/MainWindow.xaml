@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Pokedex.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pokedex.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+         <!--The ItemsRepeater and ScrollViewer used:--> 
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  VerticalScrollMode="Auto"
+                  IsVerticalScrollChainingEnabled="False"
+                  MaxHeight="500">
+
+            <ScrollViewer.Resources>
+
+                <UniformGridLayout x:Name="UniformGridLayout" MinRowSpacing="8" MinColumnSpacing="8"/>
+
+                 <!--The DataTemplate used: HorizontalBarTemplate-->
+
+                <DataTemplate x:Key="ImageTemplate" x:DataType="local:Pokemon">
+                    <Button PointerEntered="element_PointerEntered" PointerExited="element_PointerExited">
+                        <Image Source="{x:Bind Sprites.Front_default}" Width="96" Height="96"/>    
+                    </Button>
+                </DataTemplate>
+            </ScrollViewer.Resources>
+
+
+            <ItemsRepeater
+                   ItemsSource="{x:Bind PokemonRepository.PokemonItems}"
+                   Layout="{StaticResource UniformGridLayout}"
+                   ItemTemplate="{StaticResource ImageTemplate}" />
+        </ScrollViewer>
+
+         <!--The Layout specifications used:--> 
+    </Grid>
+</Window>
