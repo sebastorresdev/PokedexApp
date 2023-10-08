@@ -22,9 +22,17 @@
                  <!--The DataTemplate used: HorizontalBarTemplate-->
 
                 <DataTemplate x:Key="ImageTemplate" x:DataType="local:Pokemon">
-                    <Button PointerEntered="element_PointerEntered" PointerExited="element_PointerExited">
-                        <Image Source="{x:Bind Sprites.Front_default}" Width="96" Height="96"/>    
-                    </Button>
+                    <StackPanel BorderThickness="1" Margin="5">
+                        <Button PointerEntered="element_PointerEntered" PointerExited="element_PointerExited">
+                            <Image Source="{x:Bind Sprites.Front_default}" Width="96" Height="96"/>
+                        </Button>
+                        <TextBlock
+                            x:Name="recipeName"
+                            Text="{x:Bind Name}"
+                            TextWrapping="Wrap"
+                            Margin="15,0,10,0"
+                            Style="{StaticResource TitleTextBlockStyle}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ScrollViewer.Resources>
 
